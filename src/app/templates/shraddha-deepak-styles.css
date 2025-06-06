@@ -1,0 +1,438 @@
+
+/*
+  IMPORTANT: This file is a placeholder.
+  You need to MANUALLY COMBINE the content of ALL the following CSS files
+  from your original HTML project into this single file:
+
+  - css/normalize.min.css
+  - css/bootstrap.min.css (Consider potential conflicts if Bootstrap components are not fully isolated)
+  - css/jquery.fancybox.css
+  - css/flexslider.css
+  - css/heart.css
+  - css/ytvideo.css
+  - css/classicvideo.css
+  - css/showmap.css
+  - css/card.css (If this is for the family cards or general cards)
+  - css/styles.min.css (Your main custom styles)
+  - css/queries.css (Your responsive styles)
+  - node_modules/animate.css/animate.min.css (Or ensure Tailwind animations cover these needs)
+  - node_modules/font-awesome/css/font-awesome.min.css (If not replacing all icons with Lucide)
+
+  Ensure that any relative paths for fonts or images within these CSS files
+  are updated to work correctly from the `public` directory if necessary.
+  For example, url('../fonts/...') might become url('/assets/shraddha-deepak/fonts/...').
+
+  This consolidated stylesheet will be imported by the
+  `/src/app/templates/shraddha-deepak/page.tsx` component.
+*/
+
+/* Example of how to start combining (illustrative, replace with actual content): */
+
+/* From normalize.min.css (content) */
+/* ... */
+
+/* From bootstrap.min.css (content) */
+/* ... */
+
+/* From styles.min.css (content) */
+/* ... (ensure this comes after Bootstrap if it overrides Bootstrap) */
+
+/* From queries.css (content) */
+/* ... */
+
+
+/* Minimal styles to ensure basic layout if above are not filled yet */
+body.shraddha-deepak-template {
+  font-family: sans-serif; /* Example, will be overridden by combined CSS */
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  color: #333;
+  line-height: 1.6;
+}
+
+.shraddha-deepak-template .container {
+  width: 90%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.shraddha-deepak-template .row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.shraddha-deepak-template [class*="col-"] {
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 100%;
+}
+
+/* Add more specific styles from your original files here */
+/* For example, .hero, .navigation, .event-card, etc. */
+
+/* Ensure that styles for things like .wp1, .wp2 animations are included */
+/* Ensure styles for .fancybox, .flexslider are included if those components are used */
+
+/* Custom map button from HTML */
+.custom-map-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff69b4; /* Example accent color */
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.custom-map-button:hover {
+    background-color: #ff85c1; /* Lighter accent color on hover */
+}
+
+
+/* Rotated Video Section Styles (from your HTML) */
+.bg-video-section-rotated {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Adjust as needed */
+  overflow: hidden; /* Important to contain the rotated video */
+  background-color: #000; /* Fallback background */
+}
+
+.bg-video-container-rotated {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 177.77vh; /* 100vh * 1.777 (16/9 aspect ratio) */
+  height: 100vw; /* Height becomes width due to rotation */
+  min-width: 100%; /* Ensure it covers the width */
+  min-height: 100%; /* Ensure it covers the height */
+  transform: translate(-50%, -50%) rotate(0deg); /* Keep this at 0deg as iframe handles aspect*/
+}
+
+.bg-video-container-rotated iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.bg-video-overlay-rotated {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust overlay opacity */
+  color: #fff;
+  z-index: 1;
+}
+
+.bg-video-overlay-rotated h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.bg-video-overlay-rotated p {
+  font-size: 1.2rem;
+}
+
+/* Styles for navigation (example from your HTML) */
+.navigation {
+    /* ... your navigation styles ... */
+}
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    /* ... more styles ... */
+}
+.logo img {
+    /* width: 120px; height: 120px; margin-top: -56px; margin-bottom: -40px; */
+    /* Styles for the logo from original CSS */
+}
+.primary-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+.primary-nav li {
+    margin-left: 20px;
+}
+.primary-nav a {
+    text-decoration: none;
+    color: #333; /* Example color */
+}
+.member-actions .btn-white {
+    /* ... styles for white button ... */
+}
+.navicon {
+    display: none; /* Initially hidden, shown on mobile */
+}
+
+/* Basic responsiveness for navicon (example) */
+@media (max-width: 768px) {
+    .header-nav {
+        display: none; /* Hide nav links */
+    }
+    .navicon {
+        display: block; /* Show burger icon */
+    }
+    /* Add styles for expanded mobile menu */
+}
+
+/* Fallback for jQuery YTPlayer if not fully replicated */
+.video-section {
+  position: relative;
+  background-color: #333; /* Fallback */
+  color: white;
+  text-align: center;
+  padding: 50px 0;
+  min-height: 50vh; /* Ensure it has some height */
+}
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 1;
+}
+#bgVideo.player {
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.video-content {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* Styles for section padding, headers from original CSS */
+.section-padding {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+.header {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Styles for image wraps and overlays in gallery */
+.img-wrap {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 15px; /* Bootstrap gutter like */
+}
+.img-wrap img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+.img-wrap .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.img-wrap:hover .overlay {
+    opacity: 1;
+}
+.img-wrap:hover img {
+    transform: scale(1.1);
+}
+.img-wrap .overlay .fa {
+    font-size: 24px;
+}
+
+/* Footer styles */
+footer {
+    padding: 40px 0;
+    background-color: #f8f8f8; /* Example */
+    text-align: center;
+}
+.to-top-wrapper {
+    /* styles for to-top button */
+}
+.pulse2 {
+    animation: pulse2 1s infinite; /* Make sure pulse2 animation is defined */
+}
+@keyframes pulse2 {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Ensure Font Awesome icons are styled if used */
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* Add individual Font Awesome icon unicode/styles here or ensure the full FA CSS is included */
+.fa-angle-down:before { content: "\\f107"; }
+.fa-search:before { content: "\\f002"; }
+.fa-info-circle:before { content: "\\f05a"; }
+.fa-mobile:before { content: "\\f10b"; }
+.fa-map-marker:before { content: "\\f041"; }
+.fa-angle-up:before { content: "\\f106"; }
+.fa-heart:before { content: "\\f004"; }
+
+
+/* Add .wp animations if not handled by JS equivalent */
+.wp1, .wp2, .wp3, .wp4, .wp7, .wp8, .wp9 {
+  opacity: 0;
+  /* Default animation properties, to be overridden by JS or specific classes */
+}
+.animate__animated { /* Base class for animate.css */
+    /* ... */
+}
+.animate__fadeInUp { /* Example animation */
+    /* ... */
+}
+
+/* Placeholder for map canvas height */
+#map-canvas {
+  height: 400px; /* Or as defined in original CSS */
+  width: 100%;
+  background-color: #e0e0e0; /* Placeholder background */
+}
+
+#map-content-wrapper {
+    position: relative;
+    margin-top: -100px; /* Adjust as per original design for overlay effect */
+    z-index: 10;
+}
+
+#map-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    /* Initially hidden, toggled by JS */
+    display: none; 
+}
+
+/* Hero styles */
+.hero {
+    position: relative;
+    /* Add background image, color, height, etc. from original CSS */
+    background: url('/assets/shraddha-deepak/img/hero-min.jpg') no-repeat center center; /* Example, ensure image is in public path */
+    background-size: cover;
+    height: 100vh; /* Example */
+    color: white; /* Example */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.hero .hero-content img {
+    /* Styles for logo-lg.png */
+    max-width: 80%;
+}
+.hero .btn-accent {
+    /* Styles for accent button */
+    background-color: deeppink; /* Example */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.down-arrow {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.floating-arrow .fa-angle-down {
+    font-size: 24px;
+    animation: floatArrow 2s infinite;
+}
+@keyframes floatArrow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+}
+
+/* Basic grid structure if Bootstrap is not fully active */
+/* This is a very simplified version of Bootstrap's grid for critical layout */
+.shraddha-deepak-template .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.shraddha-deepak-template .col-md-10,
+.shraddha-deepak-template .col-md-offset-1,
+.shraddha-deepak-template .col-sm-4,
+.shraddha-deepak-template .col-md-12,
+.shraddha-deepak-template .col-md-3,
+.shraddha-deepak-template .col-md-6,
+.shraddha-deepak-template .col-sm-push-2,
+.shraddha-deepak-template .col-xs-6,
+.shraddha-deepak-template .col-md-2,
+.shraddha-deepak-template .col-xs-offset-1,
+.shraddha-deepak-template .col-xs-10,
+.shraddha-deepak-template .col-md-offset-3 {
+  float: left; /* Basic float layout */
+  box-sizing: border-box;
+}
+
+/* Example column widths (should come from Bootstrap or your responsive CSS) */
+.shraddha-deepak-template .col-md-12 { width: 100%; }
+.shraddha-deepak-template .col-md-10 { width: 83.33333333%; }
+.shraddha-deepak-template .col-md-offset-1 { margin-left: 8.33333333%; }
+.shraddha-deepak-template .col-md-6 { width: 50%; }
+.shraddha-deepak-template .col-md-3 { width: 25%; }
+.shraddha-deepak-template .col-md-2 { width: 16.66666667%; }
+
+
+@media (max-width: 767px) { /* hidden-xs equivalent for display:none */
+  .shraddha-deepak-template .hidden-xs { display: none !important; }
+}
+@media (max-width: 991px) { /* hidden-sm equivalent */
+  .shraddha-deepak-template .hidden-sm { display: none !important; }
+}
+@media (min-width: 992px) { /* hidden-md hidden-lg */
+  .shraddha-deepak-template .hidden-md, .shraddha-deepak-template .hidden-lg { display: none !important; }
+}
+
+/* Ensure you copy text-center, etc. helper classes if not using full Bootstrap */
+.shraddha-deepak-template .text-center { text-align: center; }
+/* ... and other utility classes ... */
+
+/* For pointer events (from map section) */
+.pointer-events-none { pointer-events: none; }
+.pointer-events-auto { pointer-events: auto; }
+

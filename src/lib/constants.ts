@@ -1,5 +1,5 @@
 
-import { Palette, Smartphone, Sparkles, MailOpen, Camera, MapPin, Check, HeartHandshake, Wand2 } from 'lucide-react';
+import { Palette, Smartphone, Sparkles, MailOpen, Camera, MapPin, Check, HeartHandshake, Wand2, ExternalLink } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 export interface Feature {
@@ -52,13 +52,16 @@ export interface Template {
   id: string;
   name: string;
   description: string;
-  coupleNames: string;
-  date: string;
-  colors: [string, string]; // [gradientFrom, gradientTo]
-  previewImage?: string; // Placeholder for potential image
-  previewStyle?: React.CSSProperties; // For gradient backgrounds
-  fontFamily?: string;
+  coupleNames?: string; // Optional for external template
+  date?: string; // Optional for external template
+  colors?: [string, string]; // [gradientFrom, gradientTo] - Optional for external template
+  previewImage?: string; 
+  previewStyle?: React.CSSProperties; 
+  fontFamily?: string; // Optional
   aiHint: string;
+  isExternal?: boolean;
+  externalLink?: string;
+  externalPreviewImage?: string; // Specific preview for external template card
 }
 
 export const templates: Template[] = [
@@ -68,7 +71,7 @@ export const templates: Template[] = [
     description: 'Timeless design with soft pastels and elegant typography. Perfect for traditional ceremonies.',
     coupleNames: 'Sarah & James',
     date: 'June 15, 2025',
-    colors: ['#fdf2f8', '#f9a8d4'], // Soft pink gradient
+    colors: ['#fdf2f8', '#f9a8d4'], 
     fontFamily: 'var(--font-serif)',
     previewStyle: { background: 'linear-gradient(135deg, #fdf2f8 0%, #f9a8d4 100%)' },
     aiHint: "elegant floral"
@@ -79,7 +82,7 @@ export const templates: Template[] = [
     description: 'Clean lines and contemporary design. Ideal for couples who love modern aesthetics.',
     coupleNames: 'Emma & David',
     date: 'September 22, 2025',
-    colors: ['#f8fafc', '#e2e8f0'], // Light gray gradient
+    colors: ['#f8fafc', '#e2e8f0'], 
     fontFamily: 'var(--font-sans)',
     previewStyle: { background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)' },
     aiHint: "minimalist geometric"
@@ -90,7 +93,7 @@ export const templates: Template[] = [
     description: 'Warm earth tones and natural textures. Perfect for outdoor and countryside weddings.',
     coupleNames: 'Olivia & Michael',
     date: 'October 12, 2025',
-    colors: ['#fef7ed', '#fed7aa'], // Warm beige gradient
+    colors: ['#fef7ed', '#fed7aa'], 
     fontFamily: 'var(--font-serif)',
     previewStyle: { background: 'linear-gradient(135deg, #fef7ed 0%, #fed7aa 100%)' },
     aiHint: "rustic barn"
@@ -101,7 +104,7 @@ export const templates: Template[] = [
     description: 'Fresh greens and floral elements. Ideal for spring and summer garden weddings.',
     coupleNames: 'Sophia & Alexander',
     date: 'May 18, 2025',
-    colors: ['#f0fdf4', '#bbf7d0'], // Light green gradient
+    colors: ['#f0fdf4', '#bbf7d0'], 
     fontFamily: 'var(--font-serif)',
     previewStyle: { background: 'linear-gradient(135deg, #f0fdf4 0%, #bbf7d0 100%)' },
     aiHint: "garden flowers"
@@ -112,7 +115,7 @@ export const templates: Template[] = [
     description: 'Art deco inspired design with gold accents. Perfect for elegant vintage-themed weddings.',
     coupleNames: 'Isabella & Richard',
     date: 'August 8, 2025',
-    colors: ['#fdf2f8', '#f9a8d4'], // Rose gold gradient
+    colors: ['#fdf2f8', '#f9a8d4'], 
     previewStyle: { background: 'linear-gradient(135deg, #fff1f2 0%, #fbcfe8 100%)' },
     fontFamily: 'var(--font-serif)',
     aiHint: "vintage artdeco"
@@ -123,10 +126,22 @@ export const templates: Template[] = [
     description: 'Ocean-inspired blues and sandy textures. Ideal for destination beach weddings.',
     coupleNames: 'Mia & Christopher',
     date: 'July 25, 2025',
-    colors: ['#ecfeff', '#67e8f9'], // Light blue gradient
+    colors: ['#ecfeff', '#67e8f9'], 
     previewStyle: { background: 'linear-gradient(135deg, #ecfeff 0%, #67e8f9 100%)' },
     fontFamily: 'var(--font-serif)',
     aiHint: "beach ocean"
+  },
+  {
+    id: 'shraddha-deepak-special',
+    name: 'Shraddha & Deepak Special',
+    description: 'A feature-rich, classic Indian wedding invitation design. Explore this premium layout.',
+    isExternal: true,
+    externalLink: '/templates/shraddha-deepak',
+    externalPreviewImage: 'https://placehold.co/400x250/E6BF8A/333333?text=S%26D+Special', // Placeholder, suggest user replace with actual screenshot
+    aiHint: "indian wedding",
+    // These are not directly used for rendering the card's internal preview but good to have
+    coupleNames: 'Shraddha & Deepak', 
+    date: 'Feb 22-23, 2025',
   },
 ];
 
@@ -163,7 +178,7 @@ export const pricingPlans: PricingPlan[] = [
     period: '/month',
     features: [
       '1 Wedding Website',
-      'All 6 Templates',
+      'All Templates + Special Layouts',
       'Advanced RSVP + Guest Management',
       'Unlimited Photo Gallery',
       '3D Interactive Elements',
@@ -181,8 +196,8 @@ export const pricingPlans: PricingPlan[] = [
     period: '/month',
     features: [
       'Unlimited Wedding Websites',
-      'All Templates + Custom Design',
-      'Advanced Features',
+      'All Templates + Custom Design Options',
+      'Advanced Features & Special Layouts',
       'White-label Solution',
       'Analytics Dashboard',
       'Gift Registry Integration',
@@ -205,29 +220,27 @@ export interface ShowcaseItem {
 }
 
 export const showcaseItems: ShowcaseItem[] = [
-  {
+   {
     id: 'countdown',
-    title: 'Countdown Sphere',
-    description: 'An elegant, animated 3D sphere with orbiting particles, symbolizing the approaching special day.',
+    title: 'Elegant Countdown Sphere',
+    description: 'A beautifully animated 3D sphere with orbiting particles and a pulsing glow, elegantly counting down to your special day. Built with advanced materials for a realistic look.',
     componentName: 'CountdownSphere',
     aiHint: "countdown clock"
   },
   {
     id: 'rings',
-    title: 'Interactive Rings',
-    description: 'Exquisite 3D wedding rings in gold and platinum that interact subtly on hover, symbolizing unity.',
+    title: 'Interactive Linked Rings',
+    description: 'Exquisite 3D wedding rings in gold and silver, subtly interlinked and responsive to hover, symbolizing eternal unity. Features realistic metal shaders and soft shadows.',
     componentName: 'InteractiveRings',
     aiHint: "wedding rings"
   },
   {
     id: 'venue',
-    title: 'Venue Model',
-    description: 'A charming, stylized 3D model of a wedding venue, complete with architectural details.',
+    title: 'Charming Venue Model',
+    description: 'A detailed and stylized 3D model of a wedding venue, featuring realistic textures, windows, and a gently rotating view. Perfect for showcasing your ceremony location.',
     componentName: 'VenueModel',
     aiHint: "church building"
   },
 ];
 
-export { Check }; // Export Check icon for pricing plans
-
-    
+export { Check, ExternalLink }; // Export Check icon for pricing plans
