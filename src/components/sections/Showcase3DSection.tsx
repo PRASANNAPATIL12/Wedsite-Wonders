@@ -1,8 +1,34 @@
+
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { showcaseItems, type ShowcaseItem } from '@/lib/constants';
-import ThreeSceneWrapper from '@/components/threejs/ThreeSceneWrapper'; // Ensure this path is correct
+import { showcaseItems, type ShowcaseItem, type ShowcaseItemComponentName } from '@/lib/constants';
+import ThreeSceneWrapper from '@/components/threejs/ThreeSceneWrapper'; 
+
+// Explicitly define the props for ThreeSceneWrapper if not already imported or defined locally
+interface ThreeSceneWrapperProps {
+  sceneType: 'countdown' | 'rings' | 'venue';
+  className?: string;
+  canvasClassName?: string;
+}
+
+// Helper function to map component names from constants to scene types for ThreeSceneWrapper
+const getSceneType = (componentName: ShowcaseItemComponentName): ThreeSceneWrapperProps['sceneType'] => {
+  switch (componentName) {
+    case 'CountdownSphere':
+      return 'countdown';
+    case 'InteractiveRings':
+      return 'rings';
+    case 'VenueModel':
+      return 'venue';
+    default:
+      // Fallback, though ideally, this should not be reached if constants are correct
+      // You might want to throw an error here or handle it more robustly
+      const exhaustiveCheck: never = componentName;
+      return exhaustiveCheck; 
+  }
+};
+
 
 export default function Showcase3DSection() {
   return (
@@ -28,7 +54,7 @@ export default function Showcase3DSection() {
               </CardHeader>
               <CardContent className="flex-grow flex flex-col">
                 <div className="h-48 md:h-56 mb-4 rounded-lg overflow-hidden bg-black/20" data-ai-hint={item.aiHint}>
-                  <ThreeSceneWrapper sceneType={item.componentName as 'countdown' | 'rings' | 'venue'} />
+                  <ThreeSceneWrapper sceneType={getSceneType(item.componentName)} />
                 </div>
                 <CardDescription className="text-neutral-300">{item.description}</CardDescription>
               </CardContent>
@@ -39,3 +65,5 @@ export default function Showcase3DSection() {
     </section>
   );
 }
+
+    

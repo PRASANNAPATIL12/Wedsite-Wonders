@@ -1,4 +1,5 @@
-import { Palette, Smartphone, Sparkles, MailOpen, Camera, MapPin, Check, HeartHandshake, Wand2, BarChart } from 'lucide-react';
+
+import { Palette, Smartphone, Sparkles, MailOpen, Camera, MapPin, Check, HeartHandshake, Wand2 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 export interface Feature {
@@ -171,7 +172,7 @@ export const pricingPlans: PricingPlan[] = [
     ],
     isFeatured: true,
     buttonText: 'Choose Popular',
-    buttonVariant: 'default', // This will use primary color from theme
+    buttonVariant: 'default', 
     Icon: Sparkles,
   },
   {
@@ -193,11 +194,13 @@ export const pricingPlans: PricingPlan[] = [
   },
 ];
 
+export type ShowcaseItemComponentName = 'CountdownSphere' | 'InteractiveRings' | 'VenueModel';
+
 export interface ShowcaseItem {
   id: string;
   title: string;
   description: string;
-  componentName: 'CountdownSphere' | 'InteractiveRings' | 'VenueModel';
+  componentName: ShowcaseItemComponentName; 
   aiHint: string;
 }
 
@@ -205,24 +208,26 @@ export const showcaseItems: ShowcaseItem[] = [
   {
     id: 'countdown',
     title: 'Countdown Sphere',
-    description: 'A rotating 3D sphere that displays the days remaining until your wedding day.',
+    description: 'An elegant, animated 3D sphere with orbiting particles, symbolizing the approaching special day.',
     componentName: 'CountdownSphere',
     aiHint: "countdown clock"
   },
   {
     id: 'rings',
     title: 'Interactive Rings',
-    description: 'Beautiful 3D wedding rings that merge and animate on hover.',
+    description: 'Exquisite 3D wedding rings in gold and platinum that interact subtly on hover, symbolizing unity.',
     componentName: 'InteractiveRings',
     aiHint: "wedding rings"
   },
   {
     id: 'venue',
     title: 'Venue Model',
-    description: 'Interactive 3D representation of your wedding venue.',
+    description: 'A charming, stylized 3D model of a wedding venue, complete with architectural details.',
     componentName: 'VenueModel',
     aiHint: "church building"
   },
 ];
 
 export { Check }; // Export Check icon for pricing plans
+
+    
