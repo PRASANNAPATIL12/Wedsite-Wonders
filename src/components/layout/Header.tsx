@@ -14,23 +14,23 @@ const navLinks = [
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-20 items-center justify-between">
-        <Link href="/" className="text-3xl font-bold font-headline text-primary">
+      <div className="container flex h-16 items-center justify-between">
+        <Link href="/" className="text-2xl sm:text-3xl font-bold font-headline text-primary">
           Wedsite Wonders
         </Link>
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
           {navLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="text-foreground/80 hover:text-primary transition-colors font-medium"
+              className="text-sm lg:text-base text-foreground/80 hover:text-primary transition-colors font-medium"
             >
               {link.label}
             </Link>
           ))}
         </nav>
-        <div className="flex items-center space-x-4">
-          <Button asChild className="hidden md:inline-flex bg-primary hover:bg-pink-400 text-primary-foreground shadow-md hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-0.5">
+        <div className="flex items-center space-x-2 sm:space-x-4">
+          <Button asChild size="sm" className="hidden md:inline-flex bg-primary hover:bg-pink-400 text-primary-foreground shadow-md hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-0.5 md:text-base">
             <Link href="#pricing">Get Started</Link>
           </Button>
           <div className="md:hidden">
