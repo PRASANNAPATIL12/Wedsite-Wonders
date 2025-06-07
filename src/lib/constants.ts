@@ -131,18 +131,7 @@ export const templates: Template[] = [
     fontFamily: 'var(--font-serif)',
     aiHint: "beach ocean"
   },
-  {
-    id: 'shraddha-deepak-special',
-    name: 'Shraddha & Deepak Special',
-    description: 'A feature-rich, classic Indian wedding invitation design. Explore this premium layout.',
-    isExternal: true,
-    externalLink: '/templates/shraddha-deepak',
-    externalPreviewImage: 'https://placehold.co/400x250/E6BF8A/333333?text=S%26D+Special', // Placeholder, suggest user replace with actual screenshot
-    aiHint: "indian wedding",
-    // These are not directly used for rendering the card's internal preview but good to have
-    coupleNames: 'Shraddha & Deepak', 
-    date: 'Feb 22-23, 2025',
-  },
+  // Removed the 'shraddha-deepak-special' template entry
 ];
 
 export interface PricingPlan {
@@ -244,3 +233,4 @@ export const showcaseItems: ShowcaseItem[] = [
 ];
 
 export { Check, ExternalLink }; // Export Check icon for pricing plans
+
