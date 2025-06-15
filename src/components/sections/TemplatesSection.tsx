@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import TemplatePreviewModal from '@/components/TemplatePreviewModal';
-import { templates, type Template as TemplateType, ExternalLink } from '@/lib/constants'; // Added ExternalLink
+import { templates, type Template as TemplateType, ExternalLink } from '@/lib/constants';
 import { ArrowRight } from 'lucide-react';
 
 interface TemplateCardProps {
@@ -52,14 +52,26 @@ const TemplateCard: React.FC<TemplateCardProps> = ({ template, onPreview, index 
               View Special Layout <ExternalLink className="ml-2 h-4 w-4" />
             </Link>
           </Button>
+        ) : template.id === 'classic' ? (
+          <Button asChild className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+            <Link href="/templates/classic-elegance">Preview Page</Link>
+          </Button>
         ) : (
-          <>
-            <Button onClick={() => onPreview(template)} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">Preview</Button>
+          <Button onClick={() => onPreview(template)} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">Preview</Button>
+        )}
+        
+        {!(template.isExternal || template.id === 'classic') && (
             <Button variant="outline" className="w-full">
               Use Template <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-          </>
         )}
+         {(template.id === 'classic') && (
+             <Button asChild variant="outline" className="w-full">
+                <Link href="#pricing"> {/* Or link to a specific purchase page */}
+                    Use Template <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+            </Button>
+         )}
       </CardFooter>
     </Card>
   );
@@ -70,7 +82,7 @@ export default function TemplatesSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handlePreview = (template: TemplateType) => {
-    if (template.isExternal) return; // External templates are handled by direct link
+    if (template.isExternal || template.id === 'classic') return; 
     setSelectedTemplate(template);
     setIsModalOpen(true);
   };
@@ -97,7 +109,7 @@ export default function TemplatesSection() {
           ))}
         </div>
       </div>
-      {selectedTemplate && !selectedTemplate.isExternal && (
+      {selectedTemplate && !selectedTemplate.isExternal && selectedTemplate.id !== 'classic' && (
         <TemplatePreviewModal
           isOpen={isModalOpen}
           onClose={handleCloseModal}
